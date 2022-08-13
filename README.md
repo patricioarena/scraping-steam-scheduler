@@ -24,9 +24,9 @@ Si se usa **interval** agregar
 Usando **cron** el trabajo es programado una vez por día laborable solo a las 5:00 p. m.
 
  ### Buildpacks para Heroku
- **heroku/python**
- **https://github.com/heroku/heroku-buildpack-google-chrome**
- **https://github.com/heroku/heroku-buildpack-chromedriver**
+ **heroku/python** <br>
+ **https://github.com/heroku/heroku-buildpack-google-chrome** <br>
+ **https://github.com/heroku/heroku-buildpack-chromedriver** <br>
 
  ### Almacenamiento de datos
 
