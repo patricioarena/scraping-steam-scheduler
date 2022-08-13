@@ -1,0 +1,6 @@
+uuid~=1.30
+selenium~=4.3.0
+pymongo~=4.2.0
+APScheduler~=3.9.1
+python-dotenv
+dnspython
