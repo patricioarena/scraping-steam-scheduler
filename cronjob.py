@@ -11,7 +11,8 @@ if type_job == 'interval':
     scheduler.add_job(main, "interval", minutes=int(os.environ['SCHULER_MINUTES']))
     scheduler.start()
 elif type_job == 'cron':
-    scheduler.scheduled_job('cron', day_of_week='mon-fri', hour=17)
+    print('scheduled_job')
+    scheduler.scheduled_job('cron', day_of_week='mon-fri', hour=os.environ['RUN_TIME'])
     scheduler.start()
 else:
     print('Job type not set for scheduler')
