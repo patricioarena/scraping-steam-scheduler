@@ -16,6 +16,8 @@ El presente proyecto es un proceso encargado de realizar el raspado de datos de 
 |TIME_SLEEP						|10										|
 |TYPE_JOB						|**cron** OR **interval**				|
 |TIMEZONE| Asia/Kolkata|   
+|RUN_TIME|17:00|
+
 
 Si se usa **interval** agregar
 |VAR               				|TYPE 									|
