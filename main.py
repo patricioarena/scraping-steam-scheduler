@@ -26,24 +26,25 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# <editor-fold desc="ChromeOptions for local development">
-# options = webdriver.ChromeOptions()
-# options.add_argument('--no-sandbox')
-# options.add_argument('--disable-gpu')
-# options.add_argument('--enable-logging')
-# options.add_argument('--log-level=0')
-# options.add_argument('--v=99')
-# options.add_argument('--data-path=/tmp/data-path')
-# options.add_argument('--ignore-certificate-errors')
-# </editor-fold>
-
-# <editor-fold desc="ChromeOptions for heroku">
-options = webdriver.ChromeOptions()
-options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-options.add_argument('--headless')
-options.add_argument('--disable-dev-shm-usage')
-options.add_argument('--no-sandbox')
-# </editor-fold>
+if int(os.environ['development']) == 1:
+    # <editor-fold desc="ChromeOptions for local development">
+    options = webdriver.ChromeOptions()
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--enable-logging')
+    options.add_argument('--log-level=0')
+    options.add_argument('--v=99')
+    options.add_argument('--data-path=/tmp/data-path')
+    options.add_argument('--ignore-certificate-errors')
+    # </editor-fold>
+else:
+    # <editor-fold desc="ChromeOptions for heroku">
+    options = webdriver.ChromeOptions()
+    options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+    options.add_argument('--headless')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--no-sandbox')
+    # </editor-fold>
 
 
 # https://saqibameen.com/blog/deploy-python-cron-job-scripts-on-heroku
@@ -102,7 +103,7 @@ def insert_documents_into_mongodb(documents: list, client: MongoClient, db_name:
         print(e)
 
 
-def insert_document_into_mongodb(client: MongoClient, db_name: str, collection_name: str, scraping_total_time:float, mongo_total_time:float):
+def insert_document_into_mongodb(client: MongoClient, db_name: str, collection_name: str, scraping_total_time: float, mongo_total_time: float):
     try:
         # print('You are connected!', client.server_info())
         # print(client.list_database_names())
@@ -151,8 +152,10 @@ def scraping_process():
     elements_no_such_element_exception: list = []
     # <editor-fold desc="Scraping process">
 
-    # driver = webdriver.Chrome(service=Service(os.environ['PATH_DRIVER']), options=options)  # For local development
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)  # For heroku
+    if int(os.environ['development']) == 1:
+        driver = webdriver.Chrome(service=Service(os.environ['PATH_DRIVER']), options=options)  # For local development
+    else:
+        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)  # For heroku
 
     driver.get(os.environ['SCRAPING_URL'])
     wait = WebDriverWait(driver, int(os.environ['DRIVER_WAIT']))
@@ -187,7 +190,8 @@ def main():
     collection_name = str(datetime.now().isoformat())
     elements, scraping_total_time = scraping_process()
     mongo_total_time = insert_documents_into_mongodb(documents=elements, client=client, db_name=db_name, collection_name=collection_name)
-    insert_document_into_mongodb(client=client, db_name=db_name, collection_name=collection_name, scraping_total_time=scraping_total_time, mongo_total_time=mongo_total_time)
+    insert_document_into_mongodb(client=client, db_name=db_name, collection_name=collection_name, scraping_total_time=scraping_total_time,
+                                 mongo_total_time=mongo_total_time)
     # select_documents_into_mongodb(client=client, db_name=db_name)
 
 
