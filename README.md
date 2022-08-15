@@ -15,6 +15,7 @@ El presente proyecto es un proceso encargado de realizar el raspado de datos de 
 |SCRAPING_URL					|https://store.steampowered.com/search/?specials=1|
 |TIME_SLEEP						|10										|
 |TYPE_JOB						|**cron** OR **interval**				|
+|TIMEZONE| Asia/Kolkata|   
 
 Si se usa **interval** agregar
 |VAR               				|TYPE 									|
