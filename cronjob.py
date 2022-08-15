@@ -5,7 +5,7 @@ from main import main
 
 type_job = os.environ['TYPE_JOB']
 
-scheduler = BlockingScheduler()
+scheduler = BlockingScheduler(timezone="Asia/Kolkata")
 
 if type_job == 'interval':
     scheduler.add_job(main, "interval", minutes=int(os.environ['SCHULER_MINUTES']))
