@@ -26,7 +26,7 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-if int(os.environ['development']) == 1:
+if int(os.environ['DEVELOPMENT']) == 1:
     # <editor-fold desc="ChromeOptions for local development">
     options = webdriver.ChromeOptions()
     options.add_argument('--no-sandbox')
@@ -152,7 +152,7 @@ def scraping_process():
     elements_no_such_element_exception: list = []
     # <editor-fold desc="Scraping process">
 
-    if int(os.environ['development']) == 1:
+    if int(os.environ['DEVELOPMENT']) == 1:
         driver = webdriver.Chrome(service=Service(os.environ['PATH_DRIVER']), options=options)  # For local development
     else:
         driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options)  # For heroku
