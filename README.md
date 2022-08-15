@@ -5,18 +5,19 @@ El presente proyecto es un proceso encargado de realizar el raspado de datos de 
 ### Variables de configuración
 |VAR               				|TYPE 									|
 |-------------------------------|---------------------------------------|
-|AUTO_SCROLL_ACTIVE				|bool              						|
+|AUTO_SCROLL_ACTIVE				|bool			|
 |CHROMEDRIVER_PATH				|**/app/.chromedriver/bin/chromedriver**|
-|CONNECTION_STRING				|str									|
-|DRIVER_WAIT					|int									|
+|CONNECTION_STRING				|str			|
+|DEVELOPMENT					|0			|
+|DRIVER_WAIT					|int			|
 |GOOGLE_CHROME_BIN				|**/app/.apt/usr/bin/google-chrome**	|
-|LIMIT_ITERATION				|int									|
-|PYTHONUNBUFFERED				|1										|
+|LIMIT_ITERATION				|int			|
+|PYTHONUNBUFFERED				|1			|
 |SCRAPING_URL					|https://store.steampowered.com/search/?specials=1|
-|TIME_SLEEP						|10										|
-|TYPE_JOB						|**cron** OR **interval**				|
-|TIMEZONE| Asia/Kolkata|   
-|RUN_TIME|17:00|
+|TIME_SLEEP					|10			|
+|TYPE_JOB					|**cron** OR **interval**|
+|TIMEZONE					|Asia/Kolkata		|   
+|RUN_TIME					|17:00			|
 
 
 Si se usa **interval** agregar
